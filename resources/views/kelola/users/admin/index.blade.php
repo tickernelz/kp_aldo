@@ -21,7 +21,7 @@
 
 $config = [
     'order' => [[1, 'asc']],
-    'columns' => [null, null, null, null, null, ['orderable' => false, 'className' => 'text-center']],
+    'columns' => [null, null, null, null, null, null, ['orderable' => false, 'className' => 'text-center']],
 ];
 @endphp
 
