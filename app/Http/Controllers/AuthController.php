@@ -10,9 +10,14 @@ class AuthController extends Controller
 {
     public function formlogin()
     {
-        if (Auth::check()) { // true sekalian session field di users nanti bisa dipanggil via Auth
+        if (Auth::check() && Auth::user()->hasAnyRole(['Super Admin', 'Admin'])) { // true sekalian session field di users nanti bisa dipanggil via Auth
             //Login Success
             return redirect()->route('admin.home');
+        }
+
+        if (Auth::check() && Auth::user()->hasAnyRole(['Siswa'])) {
+            //Login Success
+            return redirect()->route('siswa.home');
         }
 
         return view('auth.login');
@@ -33,21 +38,26 @@ class AuthController extends Controller
 
         Auth::attempt($data, $remember_me);
 
-        if (Auth::check()) { // true sekalian session field di users nanti bisa dipanggil via Auth
+        if (Auth::check() && Auth::user()->hasAnyRole(['Super Admin', 'Admin'])) { // true sekalian session field di users nanti bisa dipanggil via Auth
             //Login Success
             return redirect()->route('admin.home');
+        }
+
+        if (Auth::check() && Auth::user()->hasAnyRole(['Siswa'])) {
+            //Login Success
+            return redirect()->route('siswa.home');
         }
 
         // false
         Session::flash('error', 'Username atau password salah');
 
-        return redirect()->route('admin.login');
+        return redirect()->route('auth.login');
     }
 
     public function logout()
     {
         Auth::logout(); // menghapus session yang aktif
 
-        return redirect()->route('admin.login');
+        return redirect()->route('auth.login');
     }
 }

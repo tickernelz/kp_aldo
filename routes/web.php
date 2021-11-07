@@ -18,9 +18,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Auth Admin
-Route::get('admin/', [AuthController::class, 'formlogin'])->name('admin.index');
-Route::get('admin/login', [AuthController::class, 'formlogin'])->name('admin.login');
-Route::post('admin/login', [AuthController::class, 'login'])->name('admin.post.login');
+Route::get('auth/', [AuthController::class, 'formlogin'])->name('auth.index');
+Route::get('auth/login', [AuthController::class, 'formlogin'])->name('auth.login');
+Route::post('auth/login', [AuthController::class, 'login'])->name('auth.post.login');
 
 // Route Akses
 Route::group(['middleware' => 'auth'], function () {
