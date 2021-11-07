@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Admin extends Model
+class Buku extends Model
 {
     use HasFactory;
 
@@ -13,8 +13,8 @@ class Admin extends Model
         'id',
     ];
 
-    public function user()
+    public function kategori_buku()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(KategoriBuku::class);
     }
 }

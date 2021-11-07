@@ -277,6 +277,37 @@ return [
                 ],
             ],
         ],
+        ['header' => 'KELOLA BUKU'],
+        [
+            'text' => 'Kategori',
+            'icon' => 'fas fa-fw fa-boxes',
+            'can' => 'kelola kategori buku',
+            'submenu' => [
+                [
+                    'text' => 'List Kategori',
+                    'url' => 'admin/kelola/kategori',
+                ],
+                [
+                    'text' => 'Tambah Kategori',
+                    'url' => 'admin/kelola/kategori/tambah',
+                ],
+            ],
+        ],
+        [
+            'text' => 'Buku',
+            'icon' => 'fas fa-fw fa-book',
+            'can' => 'kelola buku',
+            'submenu' => [
+                [
+                    'text' => 'List Buku',
+                    'url' => 'admin/kelola/buku',
+                ],
+                [
+                    'text' => 'Tambah Buku',
+                    'url' => 'admin/kelola/buku/tambah',
+                ],
+            ],
+        ],
     ],
 
     /*
