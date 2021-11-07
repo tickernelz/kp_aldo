@@ -2,10 +2,12 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AutoCompleteController;
 use App\Http\Controllers\BukuController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KategoriBukuController;
 use App\Http\Controllers\SiswaController;
+use App\Http\Controllers\TransaksiController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,6 +25,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('auth/', [AuthController::class, 'formlogin'])->name('auth.index');
 Route::get('auth/login', [AuthController::class, 'formlogin'])->name('auth.login');
 Route::post('auth/login', [AuthController::class, 'login'])->name('auth.post.login');
+
+// Autocomplete Buku
+Route::get('/auto-buku', [AutoCompleteController::class, 'buku'])->name('auto.buku');
 
 // Route Akses
 Route::group(['middleware' => 'auth'], function () {
@@ -54,7 +59,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('admin/kelola/kategori/edit/{id}/post', [KategoriBukuController::class, 'edit'])->name('edit.post.kategori');
         Route::get('admin/kelola/kategori/hapus/{id}', [KategoriBukuController::class, 'hapus'])->name('hapus.kategori');
     });
-    // Kelola Kategori Buku
+    // Kelola Buku
     Route::group(['middleware' => ['can:kelola buku']], function () {
         Route::get('admin/kelola/buku', [BukuController::class, 'index'])->name('index.buku');
         Route::get('admin/kelola/buku/tambah', [BukuController::class, 'tambah_index'])->name('tambah.index.buku');
@@ -62,6 +67,16 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('admin/kelola/buku/edit/{id}', [BukuController::class, 'edit_index'])->name('edit.index.buku');
         Route::post('admin/kelola/buku/edit/{id}/post', [BukuController::class, 'edit'])->name('edit.post.buku');
         Route::get('admin/kelola/buku/hapus/{id}', [BukuController::class, 'hapus'])->name('hapus.buku');
+    });
+    // Kelola Transaksi
+    Route::group(['middleware' => ['can:kelola transaksi']], function () {
+        Route::get('admin/kelola/transaksi', [TransaksiController::class, 'index'])->name('index.transaksi');
+        Route::get('admin/kelola/transaksi/tambah', [TransaksiController::class, 'tambah_index'])->name('tambah.index.transaksi');
+        Route::post('admin/kelola/transaksi/tambah/post', [TransaksiController::class, 'tambah'])->name('tambah.post.transaksi');
+        Route::get('admin/kelola/transaksi/edit/{id}', [TransaksiController::class, 'edit_index'])->name('edit.index.transaksi');
+        Route::post('admin/kelola/transaksi/edit/{id}/post', [TransaksiController::class, 'edit'])->name('edit.post.transaksi');
+        Route::get('admin/kelola/transaksi/hapus/{id}', [TransaksiController::class, 'hapus'])->name('hapus.transaksi');
+        Route::get('admin/kelola/transaksi/kembali/{id}', [TransaksiController::class, 'kembali'])->name('kembali.transaksi');
     });
 });
 // Logout

@@ -97,6 +97,8 @@ namespace App\Models{
  * @property string|null $hp
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Transaksi[] $transaksi
+ * @property-read int|null $transaksi_count
  * @property-read \App\Models\User $user
  * @method static \Illuminate\Database\Eloquent\Builder|Siswa newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Siswa newQuery()
@@ -111,6 +113,34 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Siswa whereUserId($value)
  */
 	class Siswa extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Transaksi
+ *
+ * @property int $id
+ * @property int $siswa_id
+ * @property string $buku
+ * @property \Illuminate\Support\Carbon $tanggal_pinjam
+ * @property \Illuminate\Support\Carbon $tanggal_kembali
+ * @property string $status
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Siswa $siswa
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaksi newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaksi newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaksi query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaksi whereBuku($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaksi whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaksi whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaksi whereSiswaId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaksi whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaksi whereTanggalKembali($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaksi whereTanggalPinjam($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaksi whereUpdatedAt($value)
+ */
+	class Transaksi extends \Eloquent {}
 }
 
 namespace App\Models{

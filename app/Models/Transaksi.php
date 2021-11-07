@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Siswa extends Model
+class Transaksi extends Model
 {
     use HasFactory;
 
@@ -13,13 +13,13 @@ class Siswa extends Model
         'id',
     ];
 
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
+    protected $dates = [
+        'tanggal_pinjam',
+        'tanggal_kembali',
+    ];
 
-    public function transaksi()
+    public function siswa()
     {
-        return $this->hasMany(Transaksi::class);
+        return $this->belongsTo(Siswa::class);
     }
 }

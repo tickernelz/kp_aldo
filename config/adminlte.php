@@ -308,6 +308,22 @@ return [
                 ],
             ],
         ],
+        ['header' => 'KELOLA TRANSAKSI'],
+        [
+            'text' => 'Transaksi',
+            'icon' => 'fas fa-fw fa-retweet',
+            'can' => 'kelola transaksi',
+            'submenu' => [
+                [
+                    'text' => 'List Transaksi',
+                    'url' => 'admin/kelola/transaksi',
+                ],
+                [
+                    'text' => 'Tambah Transaksi',
+                    'url' => 'admin/kelola/transaksi/tambah',
+                ],
+            ],
+        ],
     ],
 
     /*
