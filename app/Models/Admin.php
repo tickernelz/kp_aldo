@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\Models\Admin
+ * App\Models\Admin.
  *
  * @property int $id
  * @property string $nip
