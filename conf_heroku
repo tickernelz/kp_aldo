@@ -1,0 +1,17 @@
+echo web: vendor/bin/heroku-php-apache2 public/ > Procfile
+git push heroku heroku:master
+heroku config:add APP_DEBUG=true
+heroku config:add APP_KEY=base64:znzhN9QtqUZPJzHIk+gMiLmrOpdidNZJVrEZfYwdGXE=
+heroku config:add APP_NAME=kp-aldo
+heroku config:add APP_ENV=production
+heroku config:add APP_URL=https://kp-aldo.herokuapp.com
+heroku addons:create heroku-postgresql:hobby-dev
+heroku pg:credentials:url
+heroku config:add DB_CONNECTION=pgsql
+heroku config:add DB_HOST=ec2-54-205-61-191.compute-1.amazonaws.com
+heroku config:add DB_PORT=5432
+heroku config:add DB_DATABASE=dc95v864eg6bm3
+heroku config:add DB_USERNAME=rjwrcvnxslgicg
+heroku config:add DB_PASSWORD=2655b7b7524265a39303e9c560bf9c7ac6596be67118cbe3cfeedd634d53e1e7
+heroku run php artisan migrate:fresh --seed
+heroku run php artisan storage:link
