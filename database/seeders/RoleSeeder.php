@@ -30,24 +30,25 @@ class RoleSeeder extends Seeder
             'name' => 'Super Admin',
             'guard_name' => 'web',
         ]);
-        $role1->givePermissionTo([
-            'kelola user', 'kelola transaksi', 'melakukan peminjaman', 'kelola buku', 'kelola kategori buku',
-        ]);
+        $role1->givePermissionTo('kelola user');
+        $role1->givePermissionTo('kelola buku');
+        $role1->givePermissionTo('kelola kategori buku');
+        $role1->givePermissionTo('kelola transaksi');
+        $role1->givePermissionTo('melakukan peminjaman');
 
         $role2 = Role::create([
             'name' => 'Admin',
             'guard_name' => 'web',
         ]);
-        $role2->givePermissionTo([
-            'kelola transaksi', 'melakukan peminjaman', 'kelola buku', 'kelola kategori buku',
-        ]);
+        $role2->givePermissionTo('kelola buku');
+        $role2->givePermissionTo('kelola kategori buku');
+        $role2->givePermissionTo('kelola transaksi');
+        $role2->givePermissionTo('melakukan peminjaman');
 
         $role3 = Role::create([
             'name' => 'Siswa',
             'guard_name' => 'web',
         ]);
-        $role3->givePermissionTo([
-            'melakukan peminjaman',
-        ]);
+        $role3->givePermissionTo('melakukan peminjaman');
     }
 }
