@@ -68,7 +68,7 @@ class BukuController extends Controller
 
         $request->validate([
             'isbn' => 'required|string|unique:bukus,isbn,'.$data->id,
-            'judul' => 'required|string|',
+            'judul' => 'required|string',
             'pengarang' => 'string|nullable',
             'penerbit' => 'string|nullable',
             'kategori' => 'string|nullable',
