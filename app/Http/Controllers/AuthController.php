@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use Illuminate\Http\Request;
+use Redirect;
 use Session;
 
 class AuthController extends Controller
@@ -20,13 +21,13 @@ class AuthController extends Controller
             return redirect()->route('siswa.home');
         }
 
-        return view('auth.login');
+        return view('auth.new-login');
     }
 
     public function login(Request $request)
     {
         $request->validate([
-            'username' => 'required|string',
+            'username' => 'required|string|exists:users,username',
             'password' => 'required|string',
         ]);
 
