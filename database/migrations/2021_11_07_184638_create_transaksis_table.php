@@ -17,7 +17,8 @@ class CreateTransaksisTable extends Migration
         Schema::create('transaksis', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Siswa::class);
-            $table->string('buku');
+            $table->string('isbn');
+            $table->string('buku')->nullable();
             $table->date('tanggal_pinjam');
             $table->date('tanggal_kembali');
             $table->enum('status', ['Pinjam', 'Kembali']);

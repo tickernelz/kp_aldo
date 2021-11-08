@@ -52,7 +52,8 @@
                                 value="{{$list->id }}">{{ $list->nama }}</option>
                         @endforeach
                     </x-adminlte-select2>
-                    <x-adminlte-input name="buku" id="buku" label="Buku*" placeholder="Masukkan Buku..."/>
+                    <x-adminlte-input name="isbn" id="isbn" type="number" label="ISBN*" placeholder="Masukkan ISBN..."/>
+                    <x-adminlte-input name="buku" id="buku" label="Buku" placeholder="Masukkan Buku..."/>
                     <x-adminlte-input-date name="tanggal_pinjam" :config="$conf_tgl"
                                            placeholder="Masukkan Tanggal Pinjam..."
                                            label="Tanggal Pinjam*">
@@ -94,12 +95,29 @@
     <script
         src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js"></script>
     <script type="text/javascript">
-        const route = "{{ url('auto-buku') }}";
+        const route_buku = "{{ url('auto-buku') }}";
+        const route_isbn = "{{ url('auto-isbn') }}";
 
         $('#buku').typeahead({
             source: function (query, process) {
-                return $.get(route, {
-                    query: query,
+                return $.get(route_buku, {
+                    buku: query,
+                    classNames: {
+                        input: 'Typeahead-input',
+                        hint: 'Typeahead-hint',
+                        selectable: 'Typeahead-selectable'
+                    }
+                }, function (d) {
+                    console.log(d)
+                    return process(d);
+                });
+            }
+        });
+
+        $('#isbn').typeahead({
+            source: function (query, process) {
+                return $.get(route_isbn, {
+                    isbn: query,
                     classNames: {
                         input: 'Typeahead-input',
                         hint: 'Typeahead-hint',

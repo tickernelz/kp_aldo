@@ -67,7 +67,8 @@ class TransaksiController extends Controller
     {
         $request->validate([
             'siswa' => 'required|string',
-            'buku' => 'required|string',
+            'isbn' => 'required|numeric',
+            'buku' => 'string|nullable',
             'tanggal_pinjam' => 'required|string',
             'tanggal_kembali' => 'required|string',
             'status' => 'required|string',
@@ -80,6 +81,7 @@ class TransaksiController extends Controller
         // Kirim Data ke Database
         $data = new Transaksi;
         $data->siswa_id = $request->input('siswa');
+        $data->isbn = $request->input('isbn');
         $data->buku = $request->input('buku');
         $data->tanggal_pinjam = $tanggal_pinjam;
         $data->tanggal_kembali = $tanggal_kembali;
@@ -95,7 +97,8 @@ class TransaksiController extends Controller
 
         $request->validate([
             'siswa' => 'required|string',
-            'buku' => 'required|string',
+            'isbn' => 'required|numeric',
+            'buku' => 'string|nullable',
             'tanggal_pinjam' => 'required|string',
             'tanggal_kembali' => 'required|string',
             'status' => 'required|string',
@@ -107,6 +110,7 @@ class TransaksiController extends Controller
 
         // Edit Data
         $data->siswa_id = $request->input('siswa');
+        $data->isbn = $request->input('isbn');
         $data->buku = $request->input('buku');
         $data->tanggal_pinjam = $tanggal_pinjam;
         $data->tanggal_kembali = $tanggal_kembali;

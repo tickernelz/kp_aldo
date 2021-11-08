@@ -12,6 +12,7 @@
     $heads = [
         '#',
         'Nama Peminjam (NIS)',
+        'ISBN',
         'Judul Buku',
         'Tanggal Pinjam',
         'Tanggal Kembali',
@@ -22,7 +23,7 @@
 
 $config = [
     'order' => [[0, 'asc']],
-    'columns' => [null, null, null, null, null, null, ['orderable' => false], ['orderable' => false, 'className' => 'text-center']],
+    'columns' => [null, null, null, null, null, null, null, ['orderable' => false], ['orderable' => false, 'className' => 'text-center']],
 ];
 @endphp
 
@@ -56,6 +57,7 @@ $config = [
                     <tr>
                         <td>{!! $loop->iteration !!}</td>
                         <td>{!! $li->siswa->nama !!} ({!! $li->siswa->nis !!})</td>
+                        <td>{!! $li->isbn !!}</td>
                         <td>{!! $li->buku !!}</td>
                         <td>{!! \Carbon\Carbon::parse($li->tanggal_pinjam)->formatLocalized('%d %B %Y') !!}</td>
                         <td>{!! \Carbon\Carbon::parse($li->tanggal_kembali)->formatLocalized('%d %B %Y') !!}</td>

@@ -6,6 +6,7 @@ use App\Http\Controllers\AutoCompleteController;
 use App\Http\Controllers\BukuController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KategoriBukuController;
+use App\Http\Controllers\PinjamController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\TransaksiController;
 use Illuminate\Support\Facades\Route;
@@ -28,6 +29,9 @@ Route::post('auth/login', [AuthController::class, 'login'])->name('auth.post.log
 
 // Autocomplete Buku
 Route::get('/auto-buku', [AutoCompleteController::class, 'buku'])->name('auto.buku');
+
+// Autocomplete ISBN
+Route::get('/auto-isbn', [AutoCompleteController::class, 'isbn'])->name('auto.isbn');
 
 // Route Akses
 Route::group(['middleware' => 'auth'], function () {
@@ -78,6 +82,15 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('admin/kelola/transaksi/hapus/{id}', [TransaksiController::class, 'hapus'])->name('hapus.transaksi');
         Route::get('admin/kelola/transaksi/kembali/{id}', [TransaksiController::class, 'kembali'])->name('kembali.transaksi');
     });
+
+    Route::group(['middleware' => ['can:melakukan peminjaman']], function () {
+        Route::get('/', [PinjamController::class, 'cek'])->name('cek.pinjam');
+        Route::get('pinjam/', [PinjamController::class, 'index'])->name('index.pinjam');
+        Route::post('pinjam/post', [PinjamController::class, 'pinjam'])->name('post.pinjam');
+        Route::get('pinjam/list', [PinjamController::class, 'list'])->name('list.pinjam');
+        Route::get('pinjam/list/kembali/{id}', [PinjamController::class, 'kembali'])->name('kembali.pinjam');
+    });
 });
 // Logout
 Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('get-logout', [AuthController::class, 'logout'])->name('get.logout');

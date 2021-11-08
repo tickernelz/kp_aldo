@@ -54,7 +54,10 @@
                             </option>
                         @endforeach
                     </x-adminlte-select2>
-                    <x-adminlte-input value="{{ $data->buku }}" name="buku" id="buku" label="Buku*" placeholder="Masukkan Buku..."/>
+                    <x-adminlte-input value="{{ $data->isbn }}" name="isbn" id="isbn" type="number" label="ISBN*"
+                                      placeholder="Masukkan ISBN..."/>
+                    <x-adminlte-input value="{{ $data->buku }}" name="buku" id="buku" label="Buku*"
+                                      placeholder="Masukkan Buku..."/>
                     <x-adminlte-input-date value="{{ $tanggal_pinjam }}" name="tanggal_pinjam" :config="$conf_tgl"
                                            placeholder="Masukkan Tanggal Pinjam..."
                                            label="Tanggal Pinjam*">
@@ -99,4 +102,42 @@
 @endpush
 
 @push('js')
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js"></script>
+    <script type="text/javascript">
+        const route_buku = "{{ url('auto-buku') }}";
+        const route_isbn = "{{ url('auto-isbn') }}";
+
+        $('#buku').typeahead({
+            source: function (query, process) {
+                return $.get(route_buku, {
+                    buku: buku,
+                    classNames: {
+                        input: 'Typeahead-input',
+                        hint: 'Typeahead-hint',
+                        selectable: 'Typeahead-selectable'
+                    }
+                }, function (d) {
+                    console.log(d)
+                    return process(d);
+                });
+            }
+        });
+
+        $('#isbn').typeahead({
+            source: function (query, process) {
+                return $.get(route_isbn, {
+                    isbn: isbn,
+                    classNames: {
+                        input: 'Typeahead-input',
+                        hint: 'Typeahead-hint',
+                        selectable: 'Typeahead-selectable'
+                    }
+                }, function (d) {
+                    console.log(d)
+                    return process(d);
+                });
+            }
+        });
+    </script>
 @endpush

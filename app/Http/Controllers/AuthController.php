@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Auth;
 use Illuminate\Http\Request;
-use Redirect;
 use Session;
 
 class AuthController extends Controller
@@ -18,7 +17,7 @@ class AuthController extends Controller
 
         if (Auth::check() && Auth::user()->hasAnyRole(['Siswa'])) {
             //Login Success
-            return redirect()->route('siswa.home');
+            return redirect()->route('index.pinjam');
         }
 
         return view('auth.new-login');
@@ -46,7 +45,7 @@ class AuthController extends Controller
 
         if (Auth::check() && Auth::user()->hasAnyRole(['Siswa'])) {
             //Login Success
-            return redirect()->route('siswa.home');
+            return redirect()->route('index.pinjam');
         }
 
         // false
